@@ -25,7 +25,9 @@
             <p>Age: {{ employee.age }}</p>
             <p>Department: {{ employee.department }}</p>
             <p>Employeed since: {{ employee.employedSince }}</p>
-            <button @click="deleteProduct" class="btn btn-danger">Delete</button>
+            <button @click="deleteProduct(index)" class="btn btn-danger">
+              Delete
+            </button>
           </div>
         </div>
       </div>
@@ -37,12 +39,12 @@
           <p @click="showIndexBEemployee = showIndexBEemployee === -1 ? index : -1">First name: {{
               employee.firstName
             }}</p>
-          <div v-show="showIndexEmployee === index">
+          <div v-show="showIndexBEemployee === index">
             <p>Last name: {{ employee.lastName }}</p>
             <p>Age: {{ employee.age }}</p>
             <p>Department: {{ employee.department }}</p>
             <p>Employeed since: {{ employee.employedSince }}</p>
-            <button @click="deleteProduct" class="btn btn-danger">Delete</button>
+            <button @click="deleteProduct(index)" class="btn btn-danger">Delete</button>
           </div>
         </div>
       </div>
@@ -124,9 +126,11 @@ export default {
       if (employee[index] === this.bEemployees[index]) {
         this.bEemployees.splice(index, 1)
         this.showBE = false;
+        this.showIndexBEemployee = this.showIndexBEemployee === -1 ? index : -1
       }
       if (employee[index] === this.fEemployees[index]) {
         this.fEemployees.splice(index, 1)
+        this.showIndexFEemployee = this.showIndexFEemployee === -1 ? index : -1
       }
     }
   }
